@@ -1,0 +1,26 @@
+#!/usr/bin/env ruby
+require 'net/http'
+require 'uri'
+
+%w[
+  http://www.ghibli.jp/works/marnie/#frame
+  http://www.ghibli.jp/works/kaguyahime/#frame
+  http://www.ghibli.jp/works/kazetachinu/#frame
+  http://www.ghibli.jp/works/kokurikozaka/#frame
+  http://www.ghibli.jp/works/karigurashi/#frame
+  http://www.ghibli.jp/works/ponyo/#frame
+  http://www.ghibli.jp/works/ged/#frame
+  http://www.ghibli.jp/works/chihiro/#frame
+  http://www.ghibli.jp/works/howl/#frame
+  http://www.ghibli.jp/works/baron/#frame
+  http://www.ghibli.jp/works/ghiblies/#frame
+  http://www.ghibli.jp/works/yamada/#frame
+  http://www.ghibli.jp/works/mononoke/#frame
+  http://www.ghibli.jp/works/mimi/#frame
+].each do |base_url|
+  body = Net::HTTP.get(URI(base_url))
+  body.scan(%r[http://www.ghibli.jp/gallery/\w+\d+\.jpg]).each do |url|
+    puts url
+  end
+  puts
+end
